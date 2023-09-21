@@ -1,6 +1,7 @@
 ﻿using SocialNetwork.BLL.Exceptions;
 using SocialNetwork.BLL.Models;
 using SocialNetwork.BLL.Services;
+using SocialNetwork.DAL.Repositories;
 using SocialNetwork.PLL;
 using SocialNetwork.PLL.Views;
 using System;
@@ -11,6 +12,7 @@ namespace SocialNetwork
 {
     class Program
     {
+        static FriendService friendService;
         static MessageService messageService;
         static UserService userService;
         public static MainView mainView;
@@ -22,6 +24,8 @@ namespace SocialNetwork
         public static MessageSendingView messageSendingView;
         public static UserIncomingMessageView userIncomingMessageView;
         public static UserOutcomingMessageView userOutcomingMessageView;
+        public static FriendView friendView;
+        public static UserRepository userRepository;
 
         static void Main(string[] args)
         {
@@ -37,6 +41,8 @@ namespace SocialNetwork
             messageSendingView = new MessageSendingView(messageService, userService);
             userIncomingMessageView = new UserIncomingMessageView();
             userOutcomingMessageView = new UserOutcomingMessageView();
+            friendView = new FriendView(friendService, userService);
+            userRepository = new UserRepository();
 
             while (true)
             {

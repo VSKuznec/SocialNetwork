@@ -13,10 +13,12 @@ namespace SocialNetwork.PLL.Views
 {
     public class FriendView
     {
+        FriendService friendService;
         UserService userService;
 
-        public FriendView(UserService userService)
+        public FriendView(FriendService friendService, UserService userService)
         {
+            this.friendService = friendService;
             this.userService = userService;
         }
 
@@ -24,11 +26,24 @@ namespace SocialNetwork.PLL.Views
         {
             try
             {
+                var addingFriendData = new AddingFriendData();
 
+                Console.WriteLine("Введите Email пользователя, которого хотите добавить в друзья: ");
+
+                addingFriendData.FriendEmail = Console.ReadLine();
+                addingFriendData.UserId = user.Id;
+
+                friendService.AddFriend(addingFriendData);
+
+                SuccessMessage.Show("Вы добавили указанного пользователя в друзья!");
             }
-            catch
+            catch (UserNotFoundException)
             {
-
+                AlertMessage.Show("Пользователь не найден!");
+            }
+            catch (Exception)
+            {
+                AlertMessage.Show("Произошла ошибка при добавлении пользователя в друзья!");
             }
         }
     }

@@ -19,7 +19,7 @@ namespace SocialNetwork.BLL.Models
 
         public IEnumerable<Message> IncomingMessages { get; }
         public IEnumerable<Message> OutgoingMessages { get; }
-        public IEnumerable<User> Friends { get; }
+        public IEnumerable<AddingFriend> Friends { get; }
 
         public User(
             int id,
@@ -32,7 +32,7 @@ namespace SocialNetwork.BLL.Models
             string favoriteBook,
             IEnumerable<Message> incomingMessages,
             IEnumerable<Message> outgoingMessages,
-            IEnumerable<User> friends)
+            IEnumerable<AddingFriend> friends)
         {
             this.Id = id;
             this.FirstName = firstName;
